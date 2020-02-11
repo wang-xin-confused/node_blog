@@ -1,16 +1,46 @@
+const handleBlogRouter = require('./src/router/blog')
+const handleUserRouter = require('./src/router/user')
+
 const serverHandle = (req, res) => {
     //设置返回格式JSON
     res.setHeader('Content-type', 'application/json')
 
-    const resData = {
-        name: 'xxx',
-        site: 'xxxxx',
-        env: process.env.NODE_ENV
+    // 获取 path
+    const url = req.url
+    req.path = url.split('?')[0]
+    
+    const blogData = handleBlogRouter(req, res)
+    if (blogData) {
+        res.end(
+            JSON.stringify(blogData)
+        )
+        return
     }
 
-    res.end(
-        JSON.stringify(resData)
-    )
+    const userData = handleBlogRouter(req, res)
+    if (userData) {
+        res.end(
+            JSON.stringify(userData)
+        )
+        return
+    }
+
+
+    // 未命中路由，返回 404
+    res.writeHead(404, { "Content-type": "text/plain" })
+    res.write("404 Not Found\n")
+    res.end()
 }
 
 module.exports = serverHandle
+
+
+// const resData = {
+//     name: 'xxx',
+//     site: 'xxxxx',
+//     env: process.env.NODE_ENV
+// }
+
+// res.end(
+//     JSON.stringify(resData)
+// )
