@@ -1,3 +1,6 @@
+// 第二层 处理接收到请求  发送到各个路由文件中  不涉及业务逻辑代码
+// 第三层 router文件中 处理响应路由的业务逻辑
+// 第四层 controller层 处理数据层面的东西，不涉及业务逻辑
 const querystring = require('querystring')
 const handleBlogRouter = require('./src/router/blog')
 const handleUserRouter = require('./src/router/user')
@@ -43,7 +46,7 @@ const serverHandle = (req, res) => {
 
     getPostData(req).then(postData => {
         req.body = postData
-
+        // 处理blog路由下的请求
         const blogData = handleBlogRouter(req, res)
         if (blogData) {
             res.end(
@@ -51,7 +54,7 @@ const serverHandle = (req, res) => {
             )
             return
         }
-
+        // 处理user路由下的请求
         const userData = handleUserRouter(req, res)
         if (userData) {
             res.end(
