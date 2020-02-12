@@ -15,8 +15,14 @@ const handleBlogRouter = (req, res) => {
     if (method === 'GET' && req.path === '/api/blog/list') {
         let author = req.query.author || ''
         const keyword = req.query.keyword || ''
-        const listData = getList(author, keyword)
-        return new SuccessModel(listData)
+        // const listData = getList(author, keyword)
+        // return new SuccessModel(listData)
+
+        const result = getList(author, keyword)
+        return result.then(listData => {
+            console.log(listData)
+            return new SuccessModel(listData)
+        })
     }
 
     // 获取博客详情
@@ -26,7 +32,7 @@ const handleBlogRouter = (req, res) => {
     }
 
     // 新建一篇博客
-    if (method === 'POST' && req.path === '/api/blog/new') {
+    if (method === 'POST ' && req.path === '/api/blog/new') {
         const data = newBlog(req.body)
         return new SuccessModel(data)
     }
