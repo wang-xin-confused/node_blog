@@ -46,7 +46,7 @@ const serverHandle = (req, res) => {
 
     getPostData(req).then(postData => {
         req.body = postData
-        // 处理blog路由下的请求
+         // 处理 blog 路由
         // const blogData = handleBlogRouter(req, res)
         // if (blogData) {
         //     res.end(
@@ -56,10 +56,9 @@ const serverHandle = (req, res) => {
         // }
 
         const blogResult = handleBlogRouter(req, res)
-        console.log(blogResult)
         if (blogResult) {
             blogResult.then(blogData => {
-                console.log(blogData)
+                // console.log(blogData)
                 res.end(
                     JSON.stringify(blogData)
                 )
@@ -67,11 +66,20 @@ const serverHandle = (req, res) => {
             return
         }
         // 处理user路由下的请求
-        const userData = handleUserRouter(req, res)
-        if (userData) {
-            res.end(
-                JSON.stringify(userData)
-            )
+        // const userData = handleUserRouter(req, res)
+        // if (userData) {
+        //     res.end(
+        //         JSON.stringify(userData)
+        //     )
+        //     return
+        // }
+        const userResult = handleUserRouter(req, res)
+        if (userResult) {
+            userResult.then(userData => {
+                res.end(
+                    JSON.stringify(userData)
+                )
+            })
             return
         }
 
@@ -85,14 +93,3 @@ const serverHandle = (req, res) => {
 }
 
 module.exports = serverHandle
-
-
-// const resData = {
-//     name: 'xxx',
-//     site: 'xxxxx',
-//     env: process.env.NODE_ENV
-// }
-
-// res.end(
-//     JSON.stringify(resData)
-// )
