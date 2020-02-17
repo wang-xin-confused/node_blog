@@ -7,6 +7,16 @@ const {
 } = require('../controller/blog')
 const { SuccessModel, ErrorModel } = require('../model/resModel')
 
+
+// 统一的登录验证函数
+const loginCheck = (req) => {
+    if (!req.session.username) {
+        return Promise.resolve(
+            new ErrorModel('尚未登录')
+        )
+    }
+}
+
 const handleBlogRouter = (req, res) => {
     const method = req.method // GET POST
     const id = req.query.id
@@ -18,6 +28,16 @@ const handleBlogRouter = (req, res) => {
         // const listData = getList(author, keyword)
         // return new SuccessModel(listData)
 
+        if (req.query.isadmin) {
+            // 管理员界面
+            const loginCheckResult = loginCheck(req)
+            if (loginCheckResult) {
+                // 未登录
+                return loginCheckResult
+            }
+            // 强制查询自己的博客
+            author = req.session.username
+        }
         const result = getList(author, keyword)
         return result.then(listData => {
             return new SuccessModel(listData)
@@ -27,6 +47,7 @@ const handleBlogRouter = (req, res) => {
         //     return new SuccessModel(listData) .then回调返回值永远都是一个promise对象
         // })
         // return result2
+
     }
 
     // 获取博客详情
@@ -43,7 +64,13 @@ const handleBlogRouter = (req, res) => {
     if (method === 'POST' && req.path === '/api/blog/new') {
         // const data = newBlog(req.body)
         // return new SuccessModel(data)
-        req.body.author = 'zhangsan'
+        const loginCheckResult = loginCheck(req)
+        if (loginCheckResult) {
+            // 未登录
+            return loginCheckResult
+        }
+
+        req.body.author = req.session.username
         const result = newBlog(req.body)
         return result.then(data => {
             return new SuccessModel(data)
@@ -64,8 +91,13 @@ const handleBlogRouter = (req, res) => {
 
     // 删除一篇博客
     if (method === 'POST' && req.path === '/api/blog/del') {
-        // const author = req.session.username
-        const author = 'zhangsan'
+        const loginCheckResult = loginCheck(req)
+        if (loginCheckResult) {
+            // 未登录
+            return loginCheckResult
+        }
+
+        const author = req.session.username
         const result = delBlog(id, author)
         return result.then(val => {
             if (val) {
