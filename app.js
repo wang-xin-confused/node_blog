@@ -3,7 +3,7 @@
 // 第四层 controller层 处理数据层面的东西，不涉及业务逻辑
 const querystring = require('querystring')
 const { get, set } = require('./src/db/redis')
-
+const { access } = require('./src/utils/log')
 const handleBlogRouter = require('./src/router/blog')
 const handleUserRouter = require('./src/router/user')
 
@@ -15,7 +15,7 @@ const getCookieExpires = () => {
     console.log('d.toGMTString() is ', d.toGMTString())
     return d.toGMTString()
 }
-
+console.log(123123)
 // // session 数据
 // const SESSION_DATA = {}
 
@@ -48,6 +48,9 @@ const getPostData = (req) => {
 }
 
 const serverHandle = (req, res) => {
+    // 记录 access log
+    access(`${req.method} -- ${req.url} -- ${req.headers['user-agent']} -- ${Date.now()}`)
+
     //设置返回格式JSON
     res.setHeader('Content-type', 'application/json')
 
