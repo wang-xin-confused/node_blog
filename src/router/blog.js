@@ -19,7 +19,7 @@ const loginCheck = (req) => {
 
 const handleBlogRouter = (req, res) => {
     const method = req.method // GET POST
-    const id = req.query.id
+    const id = req.query.id // get请求的参数都在query中保存
 
     // 获取博客列表
     if (method === 'GET' && req.path === '/api/blog/list') {
