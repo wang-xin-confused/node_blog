@@ -22,5 +22,6 @@ function exec(sql) {
 }
 
 module.exports = {
-    exec
+    exec,
+    escape: mysql.escape // myspl提供的方法 防止拼接spl'语句时spl注入
 }
