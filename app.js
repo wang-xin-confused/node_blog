@@ -47,6 +47,15 @@ const getPostData = (req) => {
 }
 
 const serverHandle = (req, res) => {
+    // 模拟日志
+    console.log('cur time', Date.now())
+    // 模拟错误
+    console.error('假装出错', Date.now())
+    // 模拟一个错误 程序会终止
+    if (req.url === '/err') {
+        throw new Error('/err 出错了')
+    }
+
     // 记录 access log
     access(`${req.method} -- ${req.url} -- ${req.headers['user-agent']} -- ${Date.now()}`)
 
@@ -124,7 +133,6 @@ const serverHandle = (req, res) => {
         //     )
         //     return
         // }
-
         const blogResult = handleBlogRouter(req, res)
         if (blogResult) {
             blogResult.then(blogData => {

@@ -1,0 +1,46 @@
+2020-03-26 03:53:55: 假装出错 1585166035419
+2020-03-26 03:55:34: 假装出错 1585166134936
+2020-03-26 03:57:17: 假装出错 1585166237956
+2020-03-26 04:02:24: 假装出错 1585166544235
+2020-03-26 04:02:31: 假装出错 1585166551989
+2020-03-26 04:03:52: 假装出错 1585166632610
+2020-03-26 04:04:51: 假装出错 1585166691273
+2020-03-26 04:05:09: 假装出错 1585166709885
+2020-03-26 04:06:56: 假装出错 1585166816840
+2020-03-26 04:07:52: 假装出错 1585166872849
+2020-03-26 04:08:26: 假装出错 1585166906250
+2020-03-26 04:09:09: 假装出错 1585166949731
+2020-03-26 04:12:06: 假装出错 1585167126904
+2020-03-26 04:12:53: 假装出错 1585167173462
+2020-03-26 04:13:33: 假装出错 1585167213808
+2020-03-26 04:14:04: 假装出错 1585167244164
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+Error: /err 出错了
+    at handleBlogRouter (/Users/wangxin/code/github/blog/src/router/blog.js:26:15)
+    at get.then.then.postData (/Users/wangxin/code/github/blog/app.js:136:28)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+2020-03-26 04:15:11: 假装出错 1585167311208
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+Error: /err 出错了
+    at handleBlogRouter (/Users/wangxin/code/github/blog/src/router/blog.js:26:15)
+    at get.then.then.postData (/Users/wangxin/code/github/blog/app.js:136:28)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+2020-03-26 04:16:29: 假装出错 1585167389432
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+Error: /err 出错了
+    at handleBlogRouter (/Users/wangxin/code/github/blog/src/router/blog.js:26:15)
+    at get.then.then.postData (/Users/wangxin/code/github/blog/app.js:136:28)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+2020-03-26 04:17:56: 假装出错 1585167476770
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+Error: /err 出错了
+    at handleBlogRouter (/Users/wangxin/code/github/blog/src/router/blog.js:26:15)
+    at get.then.then.postData (/Users/wangxin/code/github/blog/app.js:136:28)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+2020-03-26 04:18:30: 假装出错 1585167510752
+2020-03-26 04:18:42: 假装出错 1585167522322
+2020-03-26 04:19:15: 假装出错 1585167555339
